@@ -8,7 +8,7 @@ def load_image(name, colorkey=None):
     image = pygame.image.load(fullname)
     return image
 
-
+map_type = 'map'
 scale = 90
 api_server = "http://static-maps.yandex.ru/1.x/"
 longitude = 0
@@ -16,7 +16,8 @@ latitude = 0
 params = {
     "ll": ",".join([f'{str(longitude)}', f'{latitude}']),
     "spn": ",".join([f'{scale}', f'{scale}']),
-    "l": "map"}
+    'l': map_type}
+
 response = requests.get(api_server, params=params)
 pygame.init()
 size = width, height = 1500, 1000
@@ -47,8 +48,16 @@ while running:
             if event.key == pygame.K_UP:
                 if latitude < 80:
                     latitude += 1
+            if event.key == pygame.K_1:
+                map_type = 'map'
+            if event.key == pygame.K_2:
+                map_type = 'sat'
+            if event.key == pygame.K_3:
+                map_type = 'skl'
+
             params["spn"] = ",".join([f'{scale}', f'{scale}'])
             params['ll'] = ",".join([f'{str(longitude)}', f'{latitude}'])
+            params['l'] = map_type
             response = requests.get(api_server, params=params)
             pygame.init()
             size = width, height = 1500, 1000
