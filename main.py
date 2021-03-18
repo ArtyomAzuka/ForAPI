@@ -53,7 +53,7 @@ while running:
             if event.key == pygame.K_2:
                 map_type = 'sat'
             if event.key == pygame.K_3:
-                map_type = 'skl'
+                map_type = 'skl&sat'
 
             params["spn"] = ",".join([f'{scale}', f'{scale}'])
             params['ll'] = ",".join([f'{str(longitude)}', f'{latitude}'])
