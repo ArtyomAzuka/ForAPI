@@ -16,7 +16,8 @@ latitude = 0
 params = {
     "ll": ",".join([f'{str(longitude)}', f'{latitude}']),
     "spn": ",".join([f'{scale}', f'{scale}']),
-    'l': map_type}
+    'l': map_type
+    'pm': }
 
 response = requests.get(api_server, params=params)
 pygame.init()
